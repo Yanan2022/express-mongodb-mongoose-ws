@@ -1,24 +1,43 @@
+/* 
+Nous allons utiliser l'architecture MVC 
+M: Models ou se touve nos données
+V: La vue
+C: Controller permet l'interaction entre le model et la vue  
+
+    client : nom, prenom, phone
+
+*/
+
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv/config');
 
 
-
+//creation de l'application express js
 const app = express();
 const env = process.env;
+
+const API = env.API_URL;
+
+const clientRouter = require('./src/routes/clients');
+
+
+app.use(`${API}/clients`, clientRouter);
 
 
 
 const hostname = env.HOSTNAME;
 const port = env.PORT;
 
+//Connexion à la base de données MongoDB
 mongoose.connect(env.MONGODB_CONNECTION_STRING).then(()=>{
     console.log('Connexion à MongoDb réussie');
 }).catch((error)=>{
     console.log(error);
 });
 
-
+//création du serveur 
 app.listen(port, ()=> {
     console.log(`Le serveur a démarré sur http:://${hostname}:${port}`);
 });
+
