@@ -5,7 +5,9 @@ const router = express.Router();
 const clientController = require('../controllers/client');
 
 
-router.get('/', clientController.enregistrerUnClient)
+router.get('/', clientController.listeDesClients);
+router.post('/', clientController.enregistrerUnClient)
+router.get('/:id', clientController.detailDuClient);
 
 
 
