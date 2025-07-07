@@ -26,9 +26,11 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const clientRouter = require('./src/routes/clients');
+const categorieRouter = require('./src/routes/categorie');
 
 
 app.use(`${API}/clients`, clientRouter);
+app.use(`${API}/categories`, categorieRouter);
 
 
 
@@ -44,6 +46,6 @@ mongoose.connect(env.MONGODB_CONNECTION_STRING).then(()=>{
 
 //création du serveur 
 app.listen(port, ()=> {
-    console.log(`Le serveur a démarré sur http:://${hostname}:${port}`);
+    console.log(`Le serveur a démarré sur http://${hostname}:${port}`);
 });
 
