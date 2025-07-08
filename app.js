@@ -26,10 +26,13 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const clientRouter = require('./src/routes/clients');
+const produitRouter = require('./src/routes/produit');
 const categorieRouter = require('./src/routes/categorie');
 
 
+
 app.use(`${API}/clients`, clientRouter);
+app.use(`${API}/produits`, produitRouter);
 app.use(`${API}/categories`, categorieRouter);
 
 
